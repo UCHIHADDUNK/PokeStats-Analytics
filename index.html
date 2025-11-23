@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PokeStats Analytics Dashboard</title>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="dashboard-header">
+    <div class="header-left">
+      <h1>PokeStats Analytics</h1>
+      <p class="subtitle">Dashboard de tráfico — PokeStats Web Analyzer</p>
+    </div>
+
+    <div class="header-right">
+      <div class="header-actions">
+        <button id="darkModeToggle" class="dark-btn">🌙 </button>
+        <button id="goToPokedex" class="ghost-btn">⬅ Ir a Pokédex</button>
+      </div>
+      <div class="last-update" id="lastUpdate">Último registro: —</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- KPI cards -->
+    <section class="kpis">
+      <div class="kpi-card">
+        <div class="kpi-title">Visitas Totales</div>
+        <div class="kpi-value" id="kpiVisits">—</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-title">Usuarios Nuevos</div>
+        <div class="kpi-value" id="kpiNewUsers">—</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-title">Usuarios Recurrentes</div>
+        <div class="kpi-value" id="kpiReturning">—</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-title">Pokémon más visto</div>
+        <div class="kpi-value" id="kpiTopPokemon">—</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-title">Tipo más consultado</div>
+        <div class="kpi-value" id="kpiTopType">—</div>
+      </div>
+    </section>
+
+    <!-- Charts grid -->
+    <section class="charts-grid">
+      <div class="chart-card">
+        <h3>Visitas por Día</h3>
+        <canvas id="visitsLine"></canvas>
+      </div>
+
+      <div class="chart-card">
+        <h3>Distribución por Dispositivo</h3>
+        <canvas id="deviceDoughnut"></canvas>
+      </div>
+
+      <div class="chart-card">
+        <h3>Eventos de Usuario</h3>
+        <canvas id="eventsBar"></canvas>
+      </div>
+
+      <div class="chart-card wide">
+        <h3>Top Pokémon más vistos</h3>
+        <canvas id="topPokemonBar"></canvas>
+      </div>
+
+      <div class="chart-card wide">
+        <h3>Visitas por País</h3>
+        <canvas id="countriesBar"></canvas>
+      </div>
+    </section>
+
+    <footer class="dashboard-footer">
+      <small>PokeStats Dashboard — Proyecto académico</small>
+    </footer>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

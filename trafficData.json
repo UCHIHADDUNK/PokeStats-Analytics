@@ -1,0 +1,222 @@
+[
+    {
+        "date": "2025-11-14",
+        "visits": 120,
+        "new_users": 18,
+        "returning_users": 79,
+        "top_pokemon": "Greninja",
+        "top_type": "Fairy",
+        "device_distribution": {
+            "mobile": 66,
+            "desktop": 24,
+            "tablet": 4
+        },
+        "country": "Colombia",
+        "events": {
+            "open_details": 62,
+            "dark_mode": 9,
+            "type_chart_click": 14,
+            "search_used": 30,
+            "filter_type": 24,
+            "filter_stats": 35
+        }
+    },
+    {
+        "date": "2025-11-15",
+        "visits": 101,
+        "new_users": 21,
+        "returning_users": 53,
+        "top_pokemon": "Bulbasaur",
+        "top_type": "Psychic",
+        "device_distribution": {
+            "mobile": 63,
+            "desktop": 39,
+            "tablet": 9
+        },
+        "country": "Argentina",
+        "events": {
+            "open_details": 79,
+            "dark_mode": 24,
+            "type_chart_click": 10,
+            "search_used": 66,
+            "filter_type": 38,
+            "filter_stats": 25
+        }
+    },
+    {
+        "date": "2025-11-16",
+        "visits": 85,
+        "new_users": 48,
+        "returning_users": 82,
+        "top_pokemon": "Dragonite",
+        "top_type": "Fairy",
+        "device_distribution": {
+            "mobile": 55,
+            "desktop": 40,
+            "tablet": 7
+        },
+        "country": "Colombia",
+        "events": {
+            "open_details": 24,
+            "dark_mode": 5,
+            "type_chart_click": 19,
+            "search_used": 68,
+            "filter_type": 58,
+            "filter_stats": 11
+        }
+    },
+    {
+        "date": "2025-11-17",
+        "visits": 58,
+        "new_users": 30,
+        "returning_users": 26,
+        "top_pokemon": "Greninja",
+        "top_type": "Psychic",
+        "device_distribution": {
+            "mobile": 67,
+            "desktop": 28,
+            "tablet": 8
+        },
+        "country": "Spain",
+        "events": {
+            "open_details": 31,
+            "dark_mode": 7,
+            "type_chart_click": 16,
+            "search_used": 63,
+            "filter_type": 60,
+            "filter_stats": 35
+        }
+    },
+    {
+        "date": "2025-11-18",
+        "visits": 62,
+        "new_users": 30,
+        "returning_users": 44,
+        "top_pokemon": "Garchomp",
+        "top_type": "Normal",
+        "device_distribution": {
+            "mobile": 62,
+            "desktop": 33,
+            "tablet": 4
+        },
+        "country": "Chile",
+        "events": {
+            "open_details": 49,
+            "dark_mode": 21,
+            "type_chart_click": 4,
+            "search_used": 72,
+            "filter_type": 38,
+            "filter_stats": 13
+        }
+    },
+    {
+        "date": "2025-11-19",
+        "visits": 109,
+        "new_users": 56,
+        "returning_users": 31,
+        "top_pokemon": "Bulbasaur",
+        "top_type": "Ghost",
+        "device_distribution": {
+            "mobile": 53,
+            "desktop": 27,
+            "tablet": 10
+        },
+        "country": "Spain",
+        "events": {
+            "open_details": 53,
+            "dark_mode": 9,
+            "type_chart_click": 20,
+            "search_used": 77,
+            "filter_type": 34,
+            "filter_stats": 13
+        }
+    },
+    {
+        "date": "2025-11-20",
+        "visits": 69,
+        "new_users": 14,
+        "returning_users": 39,
+        "top_pokemon": "Garchomp",
+        "top_type": "Electric",
+        "device_distribution": {
+            "mobile": 62,
+            "desktop": 33,
+            "tablet": 8
+        },
+        "country": "USA",
+        "events": {
+            "open_details": 35,
+            "dark_mode": 35,
+            "type_chart_click": 14,
+            "search_used": 73,
+            "filter_type": 31,
+            "filter_stats": 37
+        }
+    },
+    {
+        "date": "2025-11-21",
+        "visits": 92,
+        "new_users": 18,
+        "returning_users": 38,
+        "top_pokemon": "Dragonite",
+        "top_type": "Normal",
+        "device_distribution": {
+            "mobile": 60,
+            "desktop": 37,
+            "tablet": 9
+        },
+        "country": "Mexico",
+        "events": {
+            "open_details": 77,
+            "dark_mode": 38,
+            "type_chart_click": 6,
+            "search_used": 65,
+            "filter_type": 51,
+            "filter_stats": 14
+        }
+    },
+    {
+        "date": "2025-11-22",
+        "visits": 68,
+        "new_users": 39,
+        "returning_users": 32,
+        "top_pokemon": "Gengar",
+        "top_type": "Ghost",
+        "device_distribution": {
+            "mobile": 74,
+            "desktop": 22,
+            "tablet": 6
+        },
+        "country": "Colombia",
+        "events": {
+            "open_details": 85,
+            "dark_mode": 40,
+            "type_chart_click": 16,
+            "search_used": 39,
+            "filter_type": 35,
+            "filter_stats": 30
+        }
+    },
+    {
+        "date": "2025-11-23",
+        "visits": 118,
+        "new_users": 59,
+        "returning_users": 84,
+        "top_pokemon": "Eevee",
+        "top_type": "Normal",
+        "device_distribution": {
+            "mobile": 80,
+            "desktop": 24,
+            "tablet": 4
+        },
+        "country": "Chile",
+        "events": {
+            "open_details": 48,
+            "dark_mode": 36,
+            "type_chart_click": 7,
+            "search_used": 70,
+            "filter_type": 28,
+            "filter_stats": 50
+        }
+    }
+]
