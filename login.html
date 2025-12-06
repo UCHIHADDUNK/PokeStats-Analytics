@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PokeStats — Acceso</title>
+
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ffcb05, #3b4cca);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-card {
+      background: white;
+      width: 90%;
+      max-width: 380px;
+      padding: 28px;
+      border-radius: 14px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      text-align: center;
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #3b4cca;
+    }
+
+    p {
+      font-size: 14px;
+      color: #444;
+    }
+
+    .login-btn, .signup-btn {
+      width: 100%;
+      padding: 12px;
+      margin-top: 14px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .login-btn {
+      background: #3b4cca;
+      color: white;
+    }
+
+    .login-btn:hover {
+      background: #2a39a7;
+    }
+
+    .signup-btn {
+      background: #ffcb05;
+      color: #222;
+    }
+
+    .signup-btn:hover {
+      background: #e0b000;
+    }
+
+    small {
+      display: block;
+      margin-top: 18px;
+      color: #222;
+    }
+  </style>
+</head>
+<body>
+
+<script>
+  // ➤ Si ya está logueado → mandarlo directo al dashboard
+  document.addEventListener("DOMContentLoaded", () => {
+    const user = netlifyIdentity.currentUser();
+    if (user) {
+      window.location.href = "dashboard.html";
+    }
+  });
+
+  // ➤ Cuando inicie sesión → redirigir al dashboard
+  netlifyIdentity.on("login", () => {
+    window.location.href = "dashboard.html";
+  });
+</script>
+
+<div class="login-card">
+
+  <h2>Acceso al Dashboard</h2>
+  <p>Inicia sesión o regístrate para ver las estadísticas de PokeStats.</p>
+
+  <button class="login-btn" onclick="netlifyIdentity.open('login')">
+    Iniciar Sesión
+  </button>
+
+  <button class="signup-btn" onclick="netlifyIdentity.open('signup')">
+    Crear Cuenta
+  </button>
+
+  <small>PokeStats Web Analyzer — Acceso privado</small>
+
+</div>
+
+</body>
+</html>

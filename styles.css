@@ -1,4 +1,8 @@
+/* =====================================================
+   VARIABLES GLOBALES Y TEMA
+===================================================== */
 :root{
+  /* Colores claros */
   --bg:#f6f7fb;
   --card:#ffffff;
   --text:#222;
@@ -6,6 +10,9 @@
   --accent:#3071d6; /* azul tipo pokedex */
   --kpi-border:#e6eefc;
   --card-radius:12px;
+  
+  /* Sombras sutiles */
+  --shadow-light: 0 4px 12px rgba(0,0,0,0.04), 0 1px 4px rgba(0,0,0,0.02);
 }
 
 /* Dark theme overrides */
@@ -16,8 +23,12 @@ body.dark {
   --muted: #a6a6a6;
   --accent: #4f8fe8;
   --kpi-border: #1d2734;
+  --shadow-light: 0 4px 12px rgba(0,0,0,0.3), 0 1px 4px rgba(0,0,0,0.1);
 }
 
+/* =====================================================
+   ESTILOS BASE
+===================================================== */
 *{box-sizing:border-box}
 body{
   margin:0;
@@ -28,8 +39,19 @@ body{
   -moz-osx-font-smoothing:grayscale;
   min-height:100vh;
 }
+h1, h3 { font-weight: 600; } /* Mejor consistencia en encabezados */
+a { text-decoration: none; color: var(--accent); }
 
-/* Header */
+/* Contenedor principal */
+.container{
+  max-width:1400px;
+  margin:0 auto;
+  padding:0 24px;
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
 .dashboard-header{
   display:flex;
   align-items:center;
@@ -37,85 +59,202 @@ body{
   padding:18px 24px;
   gap:16px;
   border-bottom: 1px solid rgba(0,0,0,0.05);
-  background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-}
-.dashboard-header h1{margin:0;font-size:1.2rem;}
-.subtitle{margin:2px 0 0;color:var(--muted);font-size:0.85rem}
-
-/* Header right */
-.header-actions{display:flex; gap:8px; align-items:center; margin-bottom:6px;}
-.dark-btn, .ghost-btn{
-  padding:8px 12px;
-  border-radius:8px;
-  border:none;
-  cursor:pointer;
-  font-size:0.9rem;
-}
-.dark-btn{background:var(--text); color:white}
-.ghost-btn{
-  background:transparent;
-  border:1px solid rgba(0,0,0,0.08);
-  color:var(--text);
-}
-body.dark .ghost-btn{ border:1px solid rgba(255,255,255,0.06); color:var(--text); background:transparent;}
-
-/* Layout */
-.container{
-  padding:20px;
-  max-width:1200px;
-  margin:0 auto;
+  background:var(--card); /* Fondo más limpio */
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03); /* Sombra ligera en el header */
 }
 
-/* KPI cards */
-.kpis{
-  display:grid;
-  grid-template-columns: repeat(auto-fit,minmax(160px,1fr));
-  gap:14px;
-  margin-bottom:18px;
-}
-.kpi-card{
-  background:var(--card);
-  border-radius:var(--card-radius);
-  padding:14px;
-  box-shadow: 0 2px 8px rgba(16,24,40,0.04);
-  border:1px solid var(--kpi-border);
-}
-.kpi-title{font-size:0.85rem;color:var(--muted)}
-.kpi-value{font-size:1.4rem;font-weight:600;margin-top:8px;color:var(--accent)}
+.header-left h1{ margin:0; font-size:1.5rem; }
+.header-left .subtitle{ margin:0; font-size:0.9rem; color:var(--muted); }
 
-/* Charts grid */
-.charts-grid{
-  display:grid;
-  grid-template-columns: repeat(2,1fr);
+.header-right{
+  display:flex;
+  align-items:center;
   gap:16px;
 }
+
+.header-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.last-update {
+    font-size: 0.8rem;
+    color: var(--muted);
+}
+
+/* =====================================================
+   BOTONES Y ACCIONES (NUEVA ESTILIZACIÓN)
+===================================================== */
+button{
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s, transform 0.1s;
+}
+
+.ghost-btn{
+  background: transparent;
+  border: 1px solid var(--muted);
+  color: var(--muted);
+}
+.ghost-btn:hover{
+  background: rgba(var(--muted), 0.05);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Botón de Dark Mode (Estilo redondo y limpio) */
+#darkModeToggle{
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border-radius: 50%;
+    border: 1px solid var(--kpi-border);
+    background: var(--card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+}
+#darkModeToggle:hover {
+    border-color: var(--accent);
+}
+
+/* =====================================================
+   FILTROS
+===================================================== */
+.filters-card {
+  background: var(--card);
+  padding: 18px;
+  border-radius: var(--card-radius);
+  margin-top: 22px;
+  margin-bottom: 22px;
+  box-shadow: var(--shadow-light); /* Sombra mejorada */
+}
+
+.filters-grid {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.filter-block {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.filter-block label {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-weight: 500;
+}
+
+.filter-select {
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--kpi-border);
+    background-color: var(--bg);
+    color: var(--text);
+    font-size: 1rem;
+    cursor: pointer;
+    min-width: 150px;
+    transition: border-color 0.2s;
+}
+.filter-select:focus {
+    border-color: var(--accent);
+    outline: none;
+}
+
+
+/* =====================================================
+   KPIs
+===================================================== */
+.kpis{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap:16px;
+  margin-bottom:24px;
+}
+
+.kpi-card{
+  background:var(--card);
+  padding:16px;
+  border-radius:var(--card-radius);
+  /* REEMPLAZADO por la sombra global */
+  box-shadow: var(--shadow-light); 
+  border:1px solid var(--kpi-border);
+  display: flex;
+  flex-direction: column;
+}
+
+.kpi-title{
+  color:var(--muted);
+  font-size:0.9rem;
+  margin-bottom:8px;
+  text-transform:uppercase;
+  letter-spacing:0.5px;
+}
+
+.kpi-value{
+  color:var(--text);
+  font-size:2rem; /* Aumentado para impacto visual */
+  font-weight:700;
+  line-height:1.2;
+}
+
+/* =====================================================
+   GRÁFICAS
+===================================================== */
+.charts-grid{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap:24px;
+}
+
 .chart-card{
   background:var(--card);
-  border-radius:12px;
-  padding:14px;
-  box-shadow: 0 2px 8px rgba(16,24,40,0.04);
+  padding:18px;
+  border-radius:var(--card-radius);
+  box-shadow: var(--shadow-light); /* Sombra mejorada */
   border:1px solid var(--kpi-border);
 }
 .chart-card.wide{ grid-column: 1 / -1; }
 
-.chart-card h3{ margin:0 0 8px 0; font-size:1rem; color:var(--text) }
+.chart-card h3{ margin:0 0 8px 0; font-size:1.1rem; color:var(--text) }
 
-/* footer */
+
+/* =====================================================
+   FOOTER
+===================================================== */
 .dashboard-footer{
-  margin-top:18px;
+  margin-top:40px; /* Más espacio */
   text-align:center;
   color:var(--muted);
   padding:12px 0;
 }
 
-/* Responsive */
+/* =====================================================
+   RESPONSIVE
+===================================================== */
 @media (max-width:900px){
   .charts-grid{ grid-template-columns: 1fr; }
   .dashboard-header{ flex-direction:column; align-items:flex-start; gap:8px }
+  .header-right { align-self: flex-end; }
+  .filters-grid { flex-direction: column; }
 }
 
-/* Small tweaks for charts */
-canvas{ width:100% !important; height:260px !important; }
+@media (max-width:500px){
+    .container { padding: 0 12px; }
+    .kpis { grid-template-columns: 1fr; }
+    .dashboard-header { padding: 12px; }
+}
+
+/* =====================================================
+   SMALL TWEAKS
+===================================================== */
+canvas{ width:100% !important; height:auto !important; max-height: 320px; } /* Altura más flexible */
 
 /* Type-like small accents (used optionally in KPI) */
 .type-pill{
@@ -125,6 +264,7 @@ canvas{ width:100% !important; height:260px !important; }
   font-weight:600;
   display:inline-block;
   font-size:0.8rem;
+  margin-top: 4px; /* Espacio para separar del valor */
 }
 .type-fire{background:#EE8130}
 .type-water{background:#6390F0}

@@ -8,9 +8,28 @@
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+  <!-- Netlify Identity -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+
+<script>
+  // 🔐 PROTECCIÓN: si NO hay usuario logueado → mandar al login
+  document.addEventListener("DOMContentLoaded", () => {
+    const user = netlifyIdentity.currentUser();
+    if (!user) {
+      window.location.href = "login.html";
+    }
+  });
+
+  // 🔐 Si el usuario cierra sesión → regresar al login
+  netlifyIdentity.on("logout", () => {
+    window.location.href = "login.html";
+  });
+</script>
+
   <header class="dashboard-header">
     <div class="header-left">
       <h1>PokeStats Analytics</h1>
@@ -19,15 +38,55 @@
 
     <div class="header-right">
       <div class="header-actions">
-        <button id="darkModeToggle" class="dark-btn">🌙 </button>
-        <button id="goToPokedex" class="ghost-btn">⬅ Ir a Pokédex</button>
+        <button id="darkModeToggle" class="dark-btn">🌙</button>
+        <button id="goToPokedex" class="ghost-btn">⬅ Volver a Pokédex</button>
+
+        <!-- 🔐 BOTÓN DE CERRAR SESIÓN -->
+        <button id="logoutBtn" class="ghost-btn" style="background:#e74c3c;color:white;">
+          Cerrar sesión
+        </button>
       </div>
+
       <div class="last-update" id="lastUpdate">Último registro: —</div>
     </div>
   </header>
 
   <main class="container">
-    <!-- KPI cards -->
+
+    <section class="filters-card">
+      <h3>Filtros del Dashboard</h3>
+
+      <div class="filters-grid">
+
+        <div class="filter-block">
+          <label for="dateFilter">Rango de días</label>
+          <select id="dateFilter" class="filter-select">
+            <option value="7">Últimos 7 días</option>
+            <option value="30">Últimos 30 días</option>
+            <option value="all">Todo el historial</option>
+          </select>
+        </div>
+
+        <div class="filter-block">
+          <label for="deviceFilter">Dispositivo</label>
+          <select id="deviceFilter" class="filter-select">
+            <option value="all">Todos</option>
+            <option value="mobile">Mobile</option>
+            <option value="desktop">Desktop</option>
+            <option value="tablet">Tablet</option>
+          </select>
+        </div>
+
+        <div class="filter-block">
+          <label for="countryFilter">País</label>
+          <select id="countryFilter" class="filter-select">
+            <option value="all">Todos</option>
+          </select>
+        </div>
+
+      </div>
+    </section>
+
     <section class="kpis">
       <div class="kpi-card">
         <div class="kpi-title">Visitas Totales</div>
@@ -55,8 +114,8 @@
       </div>
     </section>
 
-    <!-- Charts grid -->
     <section class="charts-grid">
+
       <div class="chart-card">
         <h3>Visitas por Día</h3>
         <canvas id="visitsLine"></canvas>
@@ -78,16 +137,26 @@
       </div>
 
       <div class="chart-card wide">
-        <h3>Visitas por País</h3>
+        <h3>Tráfico por País</h3>
         <canvas id="countriesBar"></canvas>
       </div>
+
     </section>
 
     <footer class="dashboard-footer">
       <small>PokeStats Dashboard — Proyecto académico</small>
     </footer>
+
   </main>
 
+<script>
+  // Acción del botón cerrar sesión
+  document.getElementById("logoutBtn").addEventListener("click", () => {
+    netlifyIdentity.logout();
+  });
+</script>
+
   <script type="module" src="app.js"></script>
+
 </body>
 </html>
