@@ -314,7 +314,7 @@ async function init(){
 
   // Volver a la Pokédex
   document.getElementById('goToPokedex').addEventListener('click', () => {
-    window.location.href = "https://pokestatsanalyzer.netlify.app";
+    window.location.href = "https://uchihaddunk.github.io/PokeStats-Web-Analyzer/index.html";
   });
 }
 
