@@ -1,162 +1,46 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>PokeStats Analytics Dashboard</title>
-
-  <!-- Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-  <!-- Netlify Identity -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acceso al Dashboard</title>
+  <link rel="stylesheet" href="acceso.css">
 </head>
 <body>
 
-<script>
-  // 🔐 PROTECCIÓN: si NO hay usuario logueado → mandar al login
-  document.addEventListener("DOMContentLoaded", () => {
-    const user = netlifyIdentity.currentUser();
-    if (!user) {
-      window.location.href = "login.html";
+  <div class="access-container">
+    <div class="access-card">
+      <h1>Acceso</h1>
+      <p>Ingresa la contraseña para continuar</p>
+
+      <input type="password" id="passwordInput" placeholder="Contraseña">
+
+      <button id="loginBtn">Entrar</button>
+
+      <div id="errorMsg" class="error"></div>
+    </div>
+  </div>s
+
+  <script>
+    const PASSWORD = "UNITEC"; // 🔐 CAMBIA TU CONTRASEÑA AQUÍ
+
+    document.getElementById("loginBtn").addEventListener("click", checkPass);
+    document.getElementById("passwordInput").addEventListener("keypress", e => {
+      if (e.key === "Enter") checkPass();
+    });
+
+    function checkPass() {
+      const entered = document.getElementById("passwordInput").value.trim();
+      const errorMsg = document.getElementById("errorMsg");
+
+      if (entered === PASSWORD) {
+        window.location.href = "dashboard.html"; // ⬅ redirige a tu dashboard
+      } else {
+        errorMsg.textContent = "Contraseña incorrecta";
+        document.getElementById("passwordInput").value = "";
+      }
     }
-  });
-
-  // 🔐 Si el usuario cierra sesión → regresar al login
-  netlifyIdentity.on("logout", () => {
-    window.location.href = "login.html";
-  });
-</script>
-
-  <header class="dashboard-header">
-    <div class="header-left">
-      <h1>PokeStats Analytics</h1>
-      <p class="subtitle">Dashboard de tráfico — PokeStats Web Analyzer</p>
-    </div>
-
-    <div class="header-right">
-      <div class="header-actions">
-        <button id="darkModeToggle" class="dark-btn">🌙</button>
-        <button id="goToPokedex" class="ghost-btn">⬅ Volver a Pokédex</button>
-
-        <!-- 🔐 BOTÓN DE CERRAR SESIÓN -->
-        <button id="logoutBtn" class="ghost-btn" style="background:#e74c3c;color:white;">
-          Cerrar sesión
-        </button>
-      </div>
-
-      <div class="last-update" id="lastUpdate">Último registro: —</div>
-    </div>
-  </header>
-
-  <main class="container">
-
-    <section class="filters-card">
-      <h3>Filtros del Dashboard</h3>
-
-      <div class="filters-grid">
-
-        <div class="filter-block">
-          <label for="dateFilter">Rango de días</label>
-          <select id="dateFilter" class="filter-select">
-            <option value="7">Últimos 7 días</option>
-            <option value="30">Últimos 30 días</option>
-            <option value="all">Todo el historial</option>
-          </select>
-        </div>
-
-        <div class="filter-block">
-          <label for="deviceFilter">Dispositivo</label>
-          <select id="deviceFilter" class="filter-select">
-            <option value="all">Todos</option>
-            <option value="mobile">Mobile</option>
-            <option value="desktop">Desktop</option>
-            <option value="tablet">Tablet</option>
-          </select>
-        </div>
-
-        <div class="filter-block">
-          <label for="countryFilter">País</label>
-          <select id="countryFilter" class="filter-select">
-            <option value="all">Todos</option>
-          </select>
-        </div>
-
-      </div>
-    </section>
-
-    <section class="kpis">
-      <div class="kpi-card">
-        <div class="kpi-title">Visitas Totales</div>
-        <div class="kpi-value" id="kpiVisits">—</div>
-      </div>
-
-      <div class="kpi-card">
-        <div class="kpi-title">Usuarios Nuevos</div>
-        <div class="kpi-value" id="kpiNewUsers">—</div>
-      </div>
-
-      <div class="kpi-card">
-        <div class="kpi-title">Usuarios Recurrentes</div>
-        <div class="kpi-value" id="kpiReturning">—</div>
-      </div>
-
-      <div class="kpi-card">
-        <div class="kpi-title">Pokémon más visto</div>
-        <div class="kpi-value" id="kpiTopPokemon">—</div>
-      </div>
-
-      <div class="kpi-card">
-        <div class="kpi-title">Tipo más consultado</div>
-        <div class="kpi-value" id="kpiTopType">—</div>
-      </div>
-    </section>
-
-    <section class="charts-grid">
-
-      <div class="chart-card">
-        <h3>Visitas por Día</h3>
-        <canvas id="visitsLine"></canvas>
-      </div>
-
-      <div class="chart-card">
-        <h3>Distribución por Dispositivo</h3>
-        <canvas id="deviceDoughnut"></canvas>
-      </div>
-
-      <div class="chart-card">
-        <h3>Eventos de Usuario</h3>
-        <canvas id="eventsBar"></canvas>
-      </div>
-
-      <div class="chart-card wide">
-        <h3>Top Pokémon más vistos</h3>
-        <canvas id="topPokemonBar"></canvas>
-      </div>
-
-      <div class="chart-card wide">
-        <h3>Tráfico por País</h3>
-        <canvas id="countriesBar"></canvas>
-      </div>
-
-    </section>
-
-    <footer class="dashboard-footer">
-      <small>PokeStats Dashboard — Proyecto académico</small>
-    </footer>
-
-  </main>
-
-<script>
-  // Acción del botón cerrar sesión
-  document.getElementById("logoutBtn").addEventListener("click", () => {
-    netlifyIdentity.logout();
-  });
-</script>
-
-  <script type="module" src="app.js"></script>
+  </script>
 
 </body>
 </html>

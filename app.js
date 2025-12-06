@@ -134,12 +134,17 @@ function prepareSeries(data){
   let mobile = 0, desktop = 0, tablet = 0;
 
   data.forEach(d => {
-    const dist = d.device_distribution || {};
-    // Sumamos la distribución de todos los días filtrados
-    mobile  += dist.mobile  || 0;
-    desktop += dist.desktop || 0;
-    tablet  += dist.tablet  || 0;
-  });
+  const dist = d.device_distribution || {};
+
+  if (dashboardState.device === "all" || dashboardState.device === "mobile")
+      mobile += dist.mobile || 0;
+
+  if (dashboardState.device === "all" || dashboardState.device === "desktop")
+      desktop += dist.desktop || 0;
+
+  if (dashboardState.device === "all" || dashboardState.device === "tablet")
+      tablet += dist.tablet || 0;
+});
 
   // Eventos
   const eventKeys = ["open_details","dark_mode","type_chart_click","search_used","filter_type","filter_stats"];
@@ -309,7 +314,7 @@ async function init(){
 
   // Volver a la Pokédex
   document.getElementById('goToPokedex').addEventListener('click', () => {
-    window.location.href = "https://uchihaddunk.github.io/PokeStats-Web-Analyzer";
+    window.location.href = "https://pokestatsanalyzer.netlify.app";
   });
 }
 
